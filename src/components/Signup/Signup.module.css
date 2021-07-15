@@ -1,0 +1,38 @@
+.form__group{
+    display: flex;
+    justify-content: flex-end;
+}
+.alignCenter{
+    justify-content: center !important;
+}
+.button{
+    outline: none;
+    background-color: #333;
+    padding: .6rem 1rem;
+    transition: all 0.25s;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 3px;
+}
+
+.button:hover{
+    background-color: #000;
+}
+
+.cardWidth{
+    width: 50%;
+}
+.errorMessage{
+    color: rgb(199, 39, 11);
+}
+.message{
+    color: rgb(138, 204, 38);
+}
+
+@media (max-width: 384px) {
+    .form__group{
+        justify-content: flex-start;
+    }
+}
