@@ -60,8 +60,8 @@ const AddTask = props => {
                 <div className={`${classes.form__group} ${classes.stretch} ${classes.direction}`}>
                     <label htmlFor='priority'>Priority</label>
                     <select id='priority' name='priority' ref={priorityRef}>
-                        <option value="high">high</option>
                         <option value="normal" defaultValue>normal</option>
+                        <option value="high">high</option>
                         <option value="low">low</option>
                     </select>
                 </div>

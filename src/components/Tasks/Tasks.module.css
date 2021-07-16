@@ -4,3 +4,34 @@
     flex-direction: column;
     flex: 1 0 auto;
 }
+
+.button{
+    outline: none;
+    padding: .6rem 1rem;
+    transition: all 0.25s;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 3px;
+}
+.primary{
+    background-color: #333;
+}
+.primary:hover{
+    background-color: #000;
+}
+.header{
+    display: flex;
+    width: 1140px;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.header span{
+    display: flex;
+    justify-content: center;
+    width: calc(100%/3);
+}
+.header span:last-child{
+    justify-content: flex-end;
+}

@@ -15,6 +15,7 @@ function App() {
     <Router>
       <div className="container">
         <MainHeader />
+          {!ctx.isLoggedIn && <Redirect to='/login'/>}
           {!ctx.isLoggedIn && 
           <Switch>
             <Route path='/login'>
@@ -26,7 +27,8 @@ function App() {
           </Switch>
           }
         <main>
-          {ctx.isLoggedIn && <Redirect to='/' /> && <Home />}
+          {ctx.isLoggedIn && <Redirect to='/'/>}
+          {ctx.isLoggedIn && <Home />}
         </main>
       </div>
     </Router>

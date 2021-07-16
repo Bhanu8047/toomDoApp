@@ -6,8 +6,7 @@
 }
 .button{
     outline: none;
-    background-color: tomato;
-    padding: .4rem 6rem;
+    padding: .4rem 2rem;
     transition: all 0.25s;
     border: none;
     color: #fff;
@@ -15,20 +14,45 @@
     text-transform: uppercase;
     border-radius: 3px;
 }
-
-.button:hover{
+.delete{
+    background-color: tomato;
+}
+.delete:hover{
     background-color: rgb(179, 41, 16);
 }
+.update{
+    background-color: rgb(16, 139, 240);
+}
+.update:hover{
+    background-color: rgb(12, 87, 148);
+}
+.complete{
+    background-color: rgb(114, 163, 41);
+}
+.complete:hover{
+    background-color: rgb(90, 131, 28);
+}
+
 .heading{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+.completed,
+.pending{
+    font-size: .8rem;
+    text-transform: capitalize;
+    font-weight: 300;
+}
 .completed{
-    color: greenyellow;
+    color: rgb(114, 163, 41);
 }
 .pending{
     color: tomato;
+}
+.group{
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (max-width:1140px) {

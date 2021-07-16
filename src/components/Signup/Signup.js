@@ -36,10 +36,10 @@ const Signup = props => {
         event.preventDefault()
         // console.log(email, username, name, password)
         ctx.onSignup({email, username, name, password})
-        usernameRef.current.clear()
-        emailRef.current.clear()
-        passwordRef.current.clear()
-        nameRef.current.clear()
+        // usernameRef.current.clear()
+        // emailRef.current.clear()
+        // passwordRef.current.clear()
+        // nameRef.current.clear()
     }
     return(
         <Card className={classes.cardWidth}>
