@@ -15,7 +15,7 @@ const AuthContext = React.createContext({
 const loginHeaders = {
     'Content-Type' : 'application/json'
 }
-const baseUrl = 'http://localhost:5000/api'
+const baseUrl = 'http://192.168.1.37:5000/api'
 
 export const AuthContextProvider = props => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)

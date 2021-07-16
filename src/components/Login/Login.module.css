@@ -33,6 +33,12 @@
     color: rgb(138, 204, 38);
 }
 
+@media (max-width: 768px) {
+    .cardWidth{ 
+        width: 95vw;
+    }
+}
+
 @media (max-width: 384px) {
     .form__group{
         justify-content: flex-start;

@@ -9,7 +9,7 @@ const Tasks = props => {
     return (
         <div className={classes.tasks}>
             <h2>Tasks</h2>
-            {ctx.tasks.length === 0 && <h2>Its Empty Here, Add Some Tasks.</h2>}
+            {ctx.tasks.length === 0 && <h6>Its Empty Here, Add Some Tasks.</h6>}
             {ctx.tasks.length > 0 && ctx.tasks.map(task => <TaskItem key={task._id} task={task} />)}
         </div>
     )

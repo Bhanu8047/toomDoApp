@@ -61,7 +61,7 @@
 }
 
 @media (max-width:1140px) {
-    .cardWidth{ width: 100vw; }
+    .cardWidth{ width: 95vw; }
 }
 
 @media (max-width: 384px) {
