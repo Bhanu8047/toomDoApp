@@ -8,7 +8,9 @@ const Tasks = props => {
     const ctx = useContext(AuthContext) 
     return (
         <div className={classes.tasks}>
-            {ctx.tasks.map(task => <TaskItem key={task._id} task={task} />)}
+            <h2>Tasks</h2>
+            {ctx.tasks.length === 0 && <h2>Its Empty Here, Add Some Tasks.</h2>}
+            {ctx.tasks.length > 0 && ctx.tasks.map(task => <TaskItem key={task._id} task={task} />)}
         </div>
     )
 }

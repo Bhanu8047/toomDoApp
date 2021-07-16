@@ -5,6 +5,8 @@ const AuthContext = React.createContext({
     onLogout: () => {},
     onLogin: () => {},
     onSignup: () => {},
+    onAddTask: () => {},
+    onDeleteTask: () => {},
     message: '',
     error: '',
     tasks: [],
@@ -59,7 +61,31 @@ export const AuthContextProvider = props => {
             'driverapp': 'react_app'
         }
     },[token])
-    
+
+
+    const addTask = async (data) => {
+        const res = await fetch(baseUrl+'/task', { method: 'POST', headers: authHeaders, body: JSON.stringify(data) })
+        const resData = await res.json()
+        if(resData.success){
+            setTasks(previousTasks => [...previousTasks, resData.task])
+            setResMessage(resData.message)
+        }else if(resData.error){
+            setResError(resData.error)
+        }
+    }
+
+    const deleteTask = async (data) => {
+        const res = await fetch(baseUrl+'/task', { method: 'DELETE', headers: authHeaders, body: JSON.stringify(data) })
+        const resData = await res.json()
+        if(resData.success){
+            setTasks(previousTasks => {
+                return previousTasks.filter(task => task._id !== data.key)
+            })
+            setResMessage(resData.message)
+        }else if(resData.error){
+            setResError(resData.error)
+        }
+    }
     
     const getTasks = useCallback(async () => {
         if(token){
@@ -106,6 +132,8 @@ export const AuthContextProvider = props => {
             onLogin: loginHandler,
             onLogout: logoutHandler,
             onSignup: signupHandler,
+            onAddTask: addTask,
+            onDeleteTask: deleteTask,
             message: resMessage,
             error: resError,
             tasks: tasks

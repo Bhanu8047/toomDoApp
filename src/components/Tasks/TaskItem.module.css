@@ -1,4 +1,36 @@
 .task{
     display: flex;
     flex-direction: column;
+    margin-bottom: .5rem;
+    width: 1140px;
+}
+.button{
+    outline: none;
+    background-color: tomato;
+    padding: .4rem 6rem;
+    transition: all 0.25s;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 3px;
+}
+
+.button:hover{
+    background-color: rgb(179, 41, 16);
+}
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.completed{
+    color: greenyellow;
+}
+.pending{
+    color: tomato;
+}
+
+@media (max-width:1140px) {
+    .task{ width: 100vw; }
 }
