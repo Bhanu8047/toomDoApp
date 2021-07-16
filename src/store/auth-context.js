@@ -93,11 +93,11 @@ export const AuthContextProvider = props => {
         const resClear = setTimeout(()=>{
             setResMessage('')
             setResError('')
-        }, 1000)
+        }, 2000)
         return () => {
             clearTimeout(resClear)
         }
-    }, [resMessage,resError])
+    }, [resMessage, resError])
 
 
     return (

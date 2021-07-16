@@ -43,7 +43,7 @@ const Login = props => {
     useEffect(() => {
         const checker = setTimeout(()=> {
             setIsFormValid(username.isValid)
-        })
+        }, 500)
         return () => {
             clearTimeout(checker)
         }
@@ -53,10 +53,10 @@ const Login = props => {
         event.preventDefault()
         if(isFormvalid){
             ctx.onLogin({ username: username.value, password })
-            dispatchUsername({ type: 'INPUT_USERNAME', value: '' })
-            setPassword('')
-            usernameRef.current.clear()
-            passwordRef.current.clear()
+                // dispatchUsername({ type: 'INPUT_USERNAME', value: '' })
+                // setPassword('')
+                // usernameRef.current.clear()
+                // passwordRef.current.clear()
         } else {
             usernameRef.current.focus()
         }
