@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 
 const AuthContext = React.createContext({
     isLoggedIn: false,
@@ -6,14 +6,10 @@ const AuthContext = React.createContext({
     onLogin: () => {},
     onSignup: () => {},
     message: '',
-    error: ''
+    error: '',
+    tasks: [],
 })
 
-const authHeaders = {
-    'Content-Type' : 'application/json',
-    'Authorization': 'Bearer '+ localStorage.getItem('authToken'),
-    'driverApp': 'react_app'
-}
 const loginHeaders = {
     'Content-Type' : 'application/json'
 }
@@ -23,14 +19,25 @@ export const AuthContextProvider = props => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [resMessage, setResMessage] = useState('')
     const [resError, setResError] = useState('')
+    const [tasks, setTasks] = useState([])
+    const [token, setToken] = useState('')
+
+    const authHeaders = useMemo(function(){
+        return {
+            'Content-Type' : 'application/json',
+            'Authorization': 'Bearer '+ token,
+            'driverapp': 'react_app'
+        }
+    }, [token])
     
     const loginHandler = async (data) => {
         const res = await fetch(baseUrl+'/user/login', { method: 'POST', headers: loginHeaders, body: JSON.stringify(data) })
         const resData = await res.json()
         if(resData.success){
+            setIsLoggedIn(true)
+            setToken(resData.token)
             localStorage.setItem('authToken', resData.token)
             setResMessage(resData.message)
-            setIsLoggedIn(true)
         }else if(resData.error){
             setResError(resData.error)
         }
@@ -47,22 +54,49 @@ export const AuthContextProvider = props => {
         }
     }
     const logoutHandler = async () => {
-        const res = await fetch(baseUrl+'/user/logout', { method: 'POST', headers: authHeaders })
-        const resData = await res.json()
-        if(resData.success){
-            localStorage.removeItem('authToken')
-            setIsLoggedIn(false)
-        }else if(resData.error){
-            setResError(resData.error)
-        }
+            const res = await fetch(baseUrl+'/user/logout', { method: 'POST', headers: authHeaders })
+            const resData = await res.json()
+            if(resData.success){
+                setIsLoggedIn(false)
+                setResMessage(resData.message)
+                localStorage.removeItem('authToken')
+            }else if(resData.error){
+                setResError(resData.error)
+            }
     }
 
-    useEffect(()=>{
-        const token = localStorage.getItem('authToken')
-        if(token){
-            setIsLoggedIn(true)
+    const getTasks = useCallback(async () => {
+        if(isLoggedIn){
+            const res = await fetch(baseUrl+'/tasks', { method: 'GET', headers: authHeaders })
+            const resData = await res.json()
+            if(resData.success){
+                setTasks(resData.tasks)
+            }else if(resData.error){
+                setResError(resData.error)
+            }
         }
-    },[isLoggedIn])
+    },[isLoggedIn, authHeaders])
+    useEffect(()=>{
+        getTasks()
+    },[getTasks])
+
+    useEffect(() => {
+        const resClear = setTimeout(()=>{
+            setResMessage('')
+            setResError('')
+        }, 1000)
+        return () => {
+            clearTimeout(resClear)
+        }
+    }, [resMessage,resError])
+
+    useEffect(()=>{
+        if(localStorage.getItem('authToken')){
+            setToken(localStorage.getItem('authToken'))
+        }
+        if(token.length > 0)
+        setIsLoggedIn(true)
+    },[token])
 
     return (
         <AuthContext.Provider value={{
@@ -71,7 +105,8 @@ export const AuthContextProvider = props => {
             onLogout: logoutHandler,
             onSignup: signupHandler,
             message: resMessage,
-            error: resError
+            error: resError,
+            tasks: tasks
         }}
         >
             { props.children }

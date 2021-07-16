@@ -82,6 +82,9 @@ const Login = props => {
                     value={password}
                     onChange={passwordHandler}
                 />
+                <div className={`${classes.form__group} ${classes.alignCenter}`}>
+                    <em className={!ctx.message.length > 0 ? classes.errorMessage : classes.message} >{ctx.message.length > 0 ? ctx.message : ctx.error}</em>
+                </div>
                 <div className={classes.form__group}>
                     <Button className={classes.button} type='submit'>login</Button>
                 </div>

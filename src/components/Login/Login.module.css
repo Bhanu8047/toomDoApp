@@ -22,6 +22,17 @@
     width: 50%;
 }
 
+.alignCenter{
+    justify-content: center !important;
+}
+
+.errorMessage{
+    color: rgb(199, 39, 11);
+}
+.message{
+    color: rgb(138, 204, 38);
+}
+
 @media (max-width: 384px) {
     .form__group{
         justify-content: flex-start;

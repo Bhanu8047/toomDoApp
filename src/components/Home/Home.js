@@ -1,6 +1,11 @@
+import React from "react"
+
+import Tasks from '../Tasks/Tasks'
 const Home = () => {
     return (
-        <h1>Home</h1>
+        <React.Fragment>
+            <Tasks />
+        </React.Fragment>
     )
 }
 

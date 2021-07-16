@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import './App.css';
 import MainHeader from './components/MainHeader/MainHeader';
@@ -26,7 +26,7 @@ function App() {
           </Switch>
           }
         <main>
-          {ctx.isLoggedIn && <Home />}
+          {ctx.isLoggedIn && <Redirect to='/' /> && <Home />}
         </main>
       </div>
     </Router>
