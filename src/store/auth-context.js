@@ -21,7 +21,7 @@ const AuthContext = React.createContext({
 const loginHeaders = {
     'Content-Type' : 'application/json'
 }
-const baseUrl = 'http://192.168.1.37:5000/api'
+const baseUrl = 'http://localhost:5000/api'
 
 export const AuthContextProvider = props => {
     // SETTING STATES FOR AUTHS, USERS, TASKS, ERRORS, TOKENS USING USESTATE
@@ -77,8 +77,8 @@ export const AuthContextProvider = props => {
             setIsLoggedIn(true)
         }
     },[])
+    
     // HEADERS FOR AUTHENTICATED ROUTES************
-
     // USING USE MEMO TO RE_RENDER ONLY WHEN 'TOKEN' STATE CHANGES.
     // BECAUSE IT USES TOKEN STATE, TOBE PUSHED WITH OUR REQUESTS.
     const authHeaders = useMemo(()=>{
